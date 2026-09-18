@@ -1367,12 +1367,11 @@ a {
 
   .howwork-sticky-img-wrap {
     position: sticky;
-    top: 85px;
+    top: 72px;
     z-index: 10;
     height: 38vh;
     width: 100%;
     background: var(--bg-primary);
-    box-shadow: 0 -24px 0 0 var(--bg-primary), 0 24px 0 0 var(--bg-primary);
     border-radius: var(--radius-md);
   }
 

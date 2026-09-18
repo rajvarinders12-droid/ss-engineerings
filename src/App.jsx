@@ -651,9 +651,11 @@ function App() {
                 <div className="container footer-grid">
                     <div className="footer-col">
                         <h4 className="footer-brand">SS Engineering</h4>
-                        <p className="footer-desc">
-                            Premium structural workflows and heavy industrial fabrication for modern facilities.
-                        </p>
+                        <ul className="footer-links" style={{ gap: '6px', color: 'var(--text-secondary)' }}>
+                            <li>Phone: +91 78913 71290</li>
+                            <li>Bhiwadi Industrial Zone, Rajasthan</li>
+                            <li>GST: 08AABCS1429B1Z</li>
+                        </ul>
                     </div>
                     <div className="footer-col">
                         <h5 className="footer-heading">Quick Links</h5>
