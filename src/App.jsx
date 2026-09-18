@@ -538,7 +538,7 @@ function App() {
             {/* HERO */}
             <section className="hero">
                 <div className="video-wrap">
-                    <video autoPlay loop muted playsInline><source src="/video.mp4" type="video/mp4" /></video>
+                    <video autoPlay loop muted playsInline><source src="https://res.cloudinary.com/mgfjnxcz/video/upload/v1789708262/video_1_xwn77x.mp4" type="video/mp4" /></video>
                     <div className="video-overlay"></div>
                 </div>
                 <div className="container hero-ui">
@@ -604,7 +604,7 @@ function App() {
                             <ScrollRevealText text="For over 25 years, SS Engineering has proudly provided top-tier industrial solutions. We specialize in precision steel fabrication and structural civil works. Our goal is simple: we build safe, durable structures entirely tailored to your exact requirements." />
                             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
                                 <a href="https://wa.me/917891371290" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'inline-block', margin: '48px 0 0 0' }}>
-                                    <button className="btn-secondary"><MessageCircle size={18} /> Message Us on WhatsApp</button>
+                                    <button className="btn-secondary"><MessageCircle size={18} /> Contact Us</button>
                                 </a>
                             </motion.div>
                         </div>
@@ -647,9 +647,26 @@ function App() {
             {/* CONTACT */}
             <ContactSection />
 
-            <footer className="footer">
-                <div className="container">
-                    <p>&copy; {new Date().getFullYear()} SS Engineering. All rights reserved. Industrial structural solutions.</p>
+            <footer className="footer" id="footer">
+                <div className="container footer-grid">
+                    <div className="footer-col">
+                        <h4 className="footer-brand">SS Engineering</h4>
+                        <p className="footer-desc">
+                            Premium structural workflows and heavy industrial fabrication for modern facilities.
+                        </p>
+                    </div>
+                    <div className="footer-col">
+                        <h5 className="footer-heading">Quick Links</h5>
+                        <ul className="footer-links">
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="#howwork">Process</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="container footer-bottom">
+                    &copy; {new Date().getFullYear()} SS Engineering. All rights reserved.
                 </div>
             </footer>
         </>
