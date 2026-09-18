@@ -988,7 +988,11 @@ a {
 .howwork-step-content p {
   font-size: 16px;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
+}
+
+.howwork-mobile-img {
+  display: none;
 }
 
 /* FAQ Section */
@@ -1362,17 +1366,43 @@ a {
   }
 
   .howwork-left {
-    display: contents;
+    position: static;
   }
 
   .howwork-sticky-img-wrap {
-    position: sticky;
-    top: 72px;
-    z-index: 10;
-    height: 38vh;
+    display: none !important;
+  }
+
+  .howwork-step-body {
+    display: none;
+  }
+
+  .howwork-step--active .howwork-step-body {
+    display: block;
+    animation: slideDown 0.4s ease forwards;
+  }
+
+  .howwork-mobile-img {
+    display: block;
     width: 100%;
-    background: var(--bg-primary);
-    border-radius: var(--radius-md);
+    margin-top: 20px;
+    border-radius: var(--radius-sm);
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .faq-layout {

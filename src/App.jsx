@@ -311,7 +311,10 @@ function HowWeWork() {
                                 <div className="howwork-step-num">{step.num}</div>
                                 <div className="howwork-step-content">
                                     <h3>{step.title}</h3>
-                                    <p>{step.desc}</p>
+                                    <div className="howwork-step-body">
+                                        <p>{step.desc}</p>
+                                        <img src={step.img} alt={step.title} className="howwork-mobile-img" />
+                                    </div>
                                 </div>
                             </div>
                         ))}
