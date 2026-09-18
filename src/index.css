@@ -1357,24 +1357,23 @@ a {
   }
 
   .howwork-layout {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   .howwork-left {
+    display: contents;
+  }
+
+  .howwork-sticky-img-wrap {
     position: sticky;
-    top: 80px;
+    top: 85px;
     z-index: 10;
+    height: 38vh;
+    width: 100%;
     background: var(--bg-primary);
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .howwork-sticky-img-wrap {
-    height: 45vh;
-  }
-
-  .howwork-sticky-img-wrap {
-    aspect-ratio: 16/9;
+    box-shadow: 0 -24px 0 0 var(--bg-primary), 0 24px 0 0 var(--bg-primary);
+    border-radius: var(--radius-md);
   }
 
   .faq-layout {
