@@ -909,18 +909,16 @@ a {
   .product-modal-content {
     flex-direction: column;
     width: 90vw;
-    height: 90vh;
-    /* Demand exact large screen size */
     max-height: 90vh;
-    overflow: hidden;
-    /* Lock layout completely */
+    /* Safety limit */
+    overflow-y: auto;
+    /* Fallback scroll */
   }
 
   .modal-img-col {
     max-width: 100%;
-    height: 48%;
-    /* Huge relative height for portrait format */
-    min-height: auto;
+    height: 28vh;
+    min-height: 160px;
     flex: none;
   }
 
@@ -930,31 +928,29 @@ a {
   }
 
   .modal-text-col {
-    height: 52%;
-    /* Guarantee room for text */
     padding: 24px;
-    flex: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Crucial: prevent top-clipping on long text */
+    flex: none;
   }
 
   .modal-text-col h3 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 8px;
   }
 
   .modal-text-col p {
-    font-size: 15px;
-    line-height: 1.5;
-    margin-bottom: auto;
-    /* Push padding around naturally */
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
   }
 
   .modal-text-col .btn-primary {
-    margin-top: 16px !important;
-    padding: 12px 24px;
-    font-size: 15px;
+    margin-top: 0 !important;
+    padding: 12px 20px;
+    font-size: 14px;
     align-self: flex-start;
   }
 
