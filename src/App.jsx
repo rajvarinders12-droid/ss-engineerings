@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, MapPin, CheckCircle, Mail, Menu, X, MessageCircle, ChevronLeft, ChevronRight, Phone, Building, Plus, Minus, Headphones } from 'lucide-react';
 import detailImg from './assets/detail.jpg';
@@ -191,47 +192,50 @@ function ProductCarousel() {
             </div>
 
             {/* Product Modal */}
-            <AnimatePresence>
-                {selectedProduct && (
-                    <motion.div
-                        className="product-modal-backdrop"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setSelectedProduct(null)}
-                    >
+            {typeof document !== 'undefined' && createPortal(
+                <AnimatePresence>
+                    {selectedProduct && (
                         <motion.div
-                            className="product-modal-content"
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            onClick={e => e.stopPropagation()}
+                            className="product-modal-backdrop"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedProduct(null)}
                         >
-                            <button className="modal-close" onClick={() => setSelectedProduct(null)}>
-                                <X size={24} />
-                            </button>
-                            <div className="modal-img-col">
-                                <img src={selectedProduct.img} alt={selectedProduct.title} />
-                            </div>
-                            <div className="modal-text-col">
-                                <div className="arch-tag">Product Details</div>
-                                <h3>{selectedProduct.title}</h3>
-                                <p><strong>SS Engineering provides you the {selectedProduct.title}.</strong> {selectedProduct.desc} Engineered for heavy industrial use cases, offering robust construction and maximum reliability across all structural applications.</p>
-                                <a
-                                    href={`https://wa.me/917891371290?text=${encodeURIComponent(`Hey, I want to know more about ${selectedProduct.title}`)}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="btn-primary"
-                                    style={{ marginTop: '32px', alignSelf: 'flex-start' }}
-                                >
-                                    Know More <ArrowRight size={18} />
-                                </a>
-                            </div>
+                            <motion.div
+                                className="product-modal-content"
+                                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <button className="modal-close" onClick={() => setSelectedProduct(null)}>
+                                    <X size={24} />
+                                </button>
+                                <div className="modal-img-col">
+                                    <img src={selectedProduct.img} alt={selectedProduct.title} />
+                                </div>
+                                <div className="modal-text-col">
+                                    <div className="arch-tag" style={{ color: 'var(--text-secondary)' }}>Product Details</div>
+                                    <h3 style={{ color: 'var(--text-primary)' }}>{selectedProduct.title}</h3>
+                                    <p style={{ color: 'var(--text-secondary)' }}><strong>SS Engineering provides you the {selectedProduct.title}.</strong> {selectedProduct.desc} Engineered for heavy industrial use cases, offering robust construction and maximum reliability across all structural applications.</p>
+                                    <a
+                                        href={`https://wa.me/917891371290?text=${encodeURIComponent(`Hey, I want to know more about ${selectedProduct.title}`)}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="btn-primary"
+                                        style={{ marginTop: '32px', alignSelf: 'flex-start' }}
+                                    >
+                                        Know More <ArrowRight size={18} />
+                                    </a>
+                                </div>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </div>
     );
 }
