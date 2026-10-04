@@ -909,7 +909,7 @@ a {
   .product-modal-content {
     flex-direction: column;
     width: 90vw;
-    max-height: 90vh;
+    max-height: 96vh;
     /* Safety limit */
     overflow-y: auto;
     /* Fallback scroll */
@@ -917,8 +917,8 @@ a {
 
   .modal-img-col {
     max-width: 100%;
-    height: 28vh;
-    min-height: 160px;
+    height: 24vh;
+    min-height: 140px;
     flex: none;
   }
 
