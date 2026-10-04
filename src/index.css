@@ -818,8 +818,8 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
   z-index: 1000;
@@ -908,45 +908,54 @@ a {
 @media (max-width: 768px) {
   .product-modal-content {
     flex-direction: column;
-    width: 92vw;
-    max-height: 85vh;
-    /* ensure it stays well within visible viewport even with browser UI bars */
-    overflow-y: auto;
-    /* safety net so it NEVER completely clips content away */
+    width: 90vw;
+    height: 90vh;
+    /* Demand exact large screen size */
+    max-height: 90vh;
+    overflow: hidden;
+    /* Lock layout completely */
   }
 
   .modal-img-col {
     max-width: 100%;
-    min-height: 160px;
-    height: 28vh;
+    height: 48%;
+    /* Huge relative height for portrait format */
+    min-height: auto;
     flex: none;
   }
 
   .modal-img-col img {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    object-position: center;
   }
 
   .modal-text-col {
-    padding: 24px 20px 24px 20px;
-    /* highly optimized padding for space */
+    height: 52%;
+    /* Guarantee room for text */
+    padding: 24px;
     flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .modal-text-col h3 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 8px;
   }
 
   .modal-text-col p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: auto;
+    /* Push padding around naturally */
   }
 
   .modal-text-col .btn-primary {
-    margin-top: 0 !important;
+    margin-top: 16px !important;
     padding: 12px 24px;
-    font-size: 14px;
+    font-size: 15px;
+    align-self: flex-start;
   }
 
   .modal-close {
