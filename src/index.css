@@ -314,15 +314,17 @@ a {
 /* Hero */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
+  /* Reduced from 100vh to fit neatly without overall page stretch */
   display: flex;
-  align-items: flex-start;
-  /* Fix overlap by pushing layout structurally upward */
+  align-items: center;
   background: var(--bg-primary);
-  overflow: hidden;
-  padding-top: 25vh;
-  /* Standardized offset perfectly balancing Navbar instead of relying on center */
-  padding-bottom: 0;
+  overflow: visible;
+  /* Prevents button chopping from tight heights */
+  padding-top: 15vh;
+  /* Standardized offset perfectly balancing Navbar */
+  padding-bottom: 120px;
+  /* Buffer zone */
 }
 
 .video-wrap {
@@ -1791,7 +1793,8 @@ a {
   }
 
   .video-overlay {
-    background: linear-gradient(180deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.6) 60%, transparent 100%);
+    /* Modify mobile gradient to match light theme */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 60%, transparent 100%);
   }
 
   .hero-floating-card {
