@@ -616,19 +616,19 @@ function App() {
             {/* HERO */}
             <section className="hero">
                 <div className="video-wrap">
-                    <video autoPlay loop muted playsInline><source src="https://res.cloudinary.com/mgfjnxcz/video/upload/v1789708262/video_1_xwn77x.mp4" type="video/mp4" /></video>
+                    <img src="/bg image1.png" alt="Background" />
                     <div className="video-overlay"></div>
                 </div>
                 <div className="container hero-ui">
                     <motion.div className="hero-text-side" variants={stagger} initial="hidden" animate="visible">
-                        <motion.div variants={textReveal} className="arch-tag">SYSTEM ARCHITECTURE</motion.div>
-                        <motion.h1 variants={textReveal} className="heading-xl">Premium Heavy<br />Steel Fabrication.</motion.h1>
+                        <motion.div variants={textReveal} className="arch-tag" style={{ color: 'var(--text-secondary)' }}>BUILDING BETTER TOMORROW</motion.div>
+                        <motion.h1 variants={textReveal} className="heading-xl">Quality Construction<br />for a Stronger<br /><span style={{ color: '#C89F51' }}>Future</span></motion.h1>
                         <motion.p variants={textReveal} className="subtext hero-subtext">
-                            Delivering high-grade structural frameworks and rigorous on-site civil works for industrial facilities.
+                            From residential to commercial projects, we deliver reliable, innovative and cost-effective construction solutions tailored to your needs.
                         </motion.p>
                         <motion.div variants={textReveal} className="hero-actions">
                             <a href="#products">
-                                <button className="btn-primary">Explore Products <ArrowRight size={18} /></button>
+                                <button className="btn-primary">Get a Free Quote <ArrowRight size={18} /></button>
                             </a>
                         </motion.div>
                     </motion.div>

@@ -171,7 +171,7 @@ a {
 
 .header.transparent .logo-box,
 .header.transparent .hamburger {
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .header.transparent .logo-box span {
@@ -179,16 +179,16 @@ a {
 }
 
 .header.transparent .nav-links a {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(11, 25, 44, 0.7);
 }
 
 .header.transparent .nav-links a:hover {
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .header.transparent .header-btn {
-  background: #FFFFFF;
-  color: var(--text-primary);
+  background: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .header.solid {
@@ -330,12 +330,11 @@ a {
   z-index: 0;
 }
 
-.video-wrap video {
+.video-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.9;
-  filter: grayscale(10%);
+  object-position: right center;
 }
 
 .video-overlay {
@@ -344,7 +343,8 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.6) 45%, transparent 100%);
+  /* White gradient from left to transparent right */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 45%, transparent 100%);
 }
 
 .hero-ui {
@@ -364,14 +364,14 @@ a {
 
 .hero-text-side .heading-xl,
 .hero-text-side .arch-tag {
-  color: #FFFFFF;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: var(--text-primary);
+  text-shadow: none;
 }
 
 .hero-subtext {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  font-weight: 400;
+  color: var(--text-secondary);
+  text-shadow: none;
+  font-weight: 500;
   line-height: 1.8;
 }
 
