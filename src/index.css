@@ -908,16 +908,15 @@ a {
 @media (max-width: 768px) {
   .product-modal-content {
     flex-direction: column;
-    max-height: 90vh;
-    /* Allow it to be slighty taller, but children are tiny */
+    width: 90vw;
+    max-height: 92vh;
     overflow: hidden;
-    /* No scrolling by design */
   }
 
   .modal-img-col {
     max-width: 100%;
-    min-height: 140px;
-    height: 140px;
+    min-height: 240px;
+    height: 35vh;
     flex: none;
   }
 
@@ -926,33 +925,34 @@ a {
   }
 
   .modal-text-col {
-    padding: 20px;
+    padding: 36px 28px 48px;
     flex: none;
   }
 
   .modal-text-col h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 26px;
+    margin-bottom: 12px;
   }
 
   .modal-text-col p {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
   .modal-text-col .btn-primary {
-    margin-top: 16px !important;
-    padding: 10px 20px;
-    font-size: 13px;
+    margin-top: 0 !important;
+    padding: 14px 24px;
+    font-size: 14px;
   }
 
   .modal-close {
     background: rgba(0, 0, 0, 0.4);
     color: #fff;
-    top: 10px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
   }
 }
 
