@@ -908,15 +908,17 @@ a {
 @media (max-width: 768px) {
   .product-modal-content {
     flex-direction: column;
-    width: 90vw;
-    max-height: 92vh;
-    overflow: hidden;
+    width: 92vw;
+    max-height: 85vh;
+    /* ensure it stays well within visible viewport even with browser UI bars */
+    overflow-y: auto;
+    /* safety net so it NEVER completely clips content away */
   }
 
   .modal-img-col {
     max-width: 100%;
-    min-height: 240px;
-    height: 35vh;
+    min-height: 160px;
+    height: 28vh;
     flex: none;
   }
 
@@ -925,34 +927,35 @@ a {
   }
 
   .modal-text-col {
-    padding: 36px 28px 48px;
+    padding: 24px 20px 24px 20px;
+    /* highly optimized padding for space */
     flex: none;
   }
 
   .modal-text-col h3 {
-    font-size: 26px;
-    margin-bottom: 12px;
+    font-size: 22px;
+    margin-bottom: 8px;
   }
 
   .modal-text-col p {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
   }
 
   .modal-text-col .btn-primary {
     margin-top: 0 !important;
-    padding: 14px 24px;
+    padding: 12px 24px;
     font-size: 14px;
   }
 
   .modal-close {
     background: rgba(0, 0, 0, 0.4);
     color: #fff;
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
   }
 }
 
