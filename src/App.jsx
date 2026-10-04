@@ -24,7 +24,7 @@ function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
         }
     }, [isInView, end, duration]);
 
-    return <span ref={ref}>{count}{suffix}</span>;
+    return <span ref={ref}>{count}<span className="stat-suffix">{suffix}</span></span>;
 }
 
 // Scroll Reveal Text
@@ -52,15 +52,16 @@ const ScrollRevealText = ({ text }) => {
 
 // Products Data
 const productsData = [
-    { img: "/MS industrial heavy fabrication.jpg", title: "MS Industrial Heavy Fabrication", desc: "Large-scale mild steel structures custom-built for high-strength industrial use." },
-    { img: "/industrial MS Structural construction.jpg", title: "Industrial MS Structural Construction", desc: "Reliable steel frameworks built from the ground up for industrial buildings and factories." },
-    { img: "/industrial sheds and warehouses.jpg", title: "Industrial Shed & Warehouse", desc: "Strong, weather-proof steel buildings designed for storage and large-scale manufacturing." },
-    { img: "/Railings gates, stairs.jpg", title: "Railings, Gates & Staircases", desc: "Durable and safe steel access structures built for heavy daily industrial traffic." },
-    { img: "/Roofing and cladding.jpg", title: "Roofing & Cladding", desc: "High-quality industrial roofing to protect your facilities from harsh weather." },
-    { img: "/ms industrial tank.jpg", title: "MS Industrial Tank", desc: "Heavy-duty steel tanks engineered to store high volumes of industrial liquids." },
-    { img: "/industrial platform structure.jpeg", title: "Industrial Platform Structure", desc: "Sturdy elevated steel platforms built for safe worker access and machine operation." },
-    { img: "/heavy structural fabrication work.jpg", title: "Heavy Structural Fabrication Work", desc: "Customized heavy steel work manufactured strictly to your engineering blueprints." },
-    { img: "/MS trolley.jpg", title: "MS Trolleys & SS Lockers", desc: "Solid steel trolleys for material transport and secure stainless steel lockers for staff." }
+    { img: "/MS industrial heavy fabrication potrait.png", title: "MS Industrial Heavy Fabrication", desc: "Large-scale mild steel structures custom-built for high-strength industrial use." },
+    { img: "/Industrial MS Structural Construction potrait.png", title: "Industrial MS Structural Construction", desc: "Reliable steel frameworks built from the ground up for industrial buildings and factories." },
+    { img: "/ind. shead and wharehouse potrait.png", title: "Industrial Shed & Warehouse", desc: "Strong, weather-proof steel buildings designed for storage and large-scale manufacturing." },
+    { img: "/Railings, Gates & Staircases potrait.png", title: "Railings, Gates & Staircases", desc: "Durable and safe steel access structures built for heavy daily industrial traffic." },
+    { img: "/roofing and cladding potrait.png", title: "Roofing & Cladding", desc: "High-quality industrial roofing to protect your facilities from harsh weather." },
+    { img: "/ms tanks potrait.png", title: "MS Industrial Tank", desc: "Heavy-duty steel tanks engineered to store high volumes of industrial liquids." },
+    { img: "/ms heavy duty platforms potrait.png", title: "MS Heavy Duty Platforms", desc: "Robust and secure multi-level platforms designed for safe, heavy industrial workspaces." },
+    { img: "/Heavy Structural Fabrication Work potrait.png", title: "Heavy Structural Fabrication Work", desc: "Customized heavy steel work manufactured strictly to your engineering blueprints." },
+    { img: "/ms trolley potrait.png", title: "MS Trolleys", desc: "Solid steel trolleys for material transport across heavy industrial floors." },
+    { img: "/ss locks potrait.png", title: "SS Lockers", desc: "Secure and durable stainless steel lockers designed perfectly for staff." }
 ];
 
 // How We Work Steps Data
@@ -75,6 +76,7 @@ const stepsData = [
 function ProductCarousel() {
     // current continues infinitely (+1 or -1)
     const [current, setCurrent] = useState(0);
+    const [selectedProduct, setSelectedProduct] = useState(null);
     const total = productsData.length;
     const autoRef = useRef(null);
 
@@ -82,9 +84,11 @@ function ProductCarousel() {
     const prev = useCallback(() => setCurrent(c => c - 1), []);
 
     useEffect(() => {
-        autoRef.current = setInterval(next, 4000);
+        if (!selectedProduct) {
+            autoRef.current = setInterval(next, 4000);
+        }
         return () => clearInterval(autoRef.current);
-    }, [next]);
+    }, [next, selectedProduct]);
 
     const handleNav = (fn) => {
         clearInterval(autoRef.current);
@@ -121,17 +125,22 @@ function ProductCarousel() {
                             className="carousel-slide"
                             initial={{
                                 opacity: 0,
+                                scale: 0.85,
                                 x: `calc(${item.offset > 0 ? 3 : -3} * (var(--slide-w) + var(--slide-gap)))`
                             }}
                             animate={{
-                                opacity: Math.abs(item.offset) > 1 ? 0 : (Math.abs(item.offset) === 1 ? 0.4 : 1),
+                                opacity: Math.abs(item.offset) > 1 ? 0 : (Math.abs(item.offset) === 0 ? 1 : 0.6),
+                                scale: Math.abs(item.offset) === 0 ? 1 : 0.9,
                                 x: `calc(${item.offset} * (var(--slide-w) + var(--slide-gap)))`
                             }}
                             exit={{
                                 opacity: 0,
+                                scale: 0.85,
                                 x: `calc(${item.offset < 0 ? -3 : 3} * (var(--slide-w) + var(--slide-gap)))`
                             }}
+                            style={{ willChange: "transform, opacity", cursor: 'pointer' }}
                             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                            onClick={() => setSelectedProduct(productsData[item.dataIndex])}
                         >
                             {/* Background image */}
                             <img className="carousel-bg-img" src={item.img} alt={item.title} />
@@ -139,7 +148,6 @@ function ProductCarousel() {
                             <div className="carousel-overlay">
                                 <div className="carousel-slide-num">0{item.dataIndex + 1}</div>
                                 <h3 className="carousel-slide-title">{item.title}</h3>
-                                <p className="carousel-slide-desc">{item.desc}</p>
                             </div>
                         </motion.div>
                     ))}
@@ -175,6 +183,55 @@ function ProductCarousel() {
                     <span className="carousel-counter-total">{String(total).padStart(2, '0')}</span>
                 </div>
             </div>
+
+            <div style={{ textAlign: 'center', marginTop: '48px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '15px', fontWeight: '500', letterSpacing: '0.5px' }}>
+                    <strong style={{ color: '#C89F51' }}>Note:</strong> Click on any product above to know more details.
+                </span>
+            </div>
+
+            {/* Product Modal */}
+            <AnimatePresence>
+                {selectedProduct && (
+                    <motion.div
+                        className="product-modal-backdrop"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedProduct(null)}
+                    >
+                        <motion.div
+                            className="product-modal-content"
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            onClick={e => e.stopPropagation()}
+                        >
+                            <button className="modal-close" onClick={() => setSelectedProduct(null)}>
+                                <X size={24} />
+                            </button>
+                            <div className="modal-img-col">
+                                <img src={selectedProduct.img} alt={selectedProduct.title} />
+                            </div>
+                            <div className="modal-text-col">
+                                <div className="arch-tag">Product Details</div>
+                                <h3>{selectedProduct.title}</h3>
+                                <p><strong>SS Engineering provides you the {selectedProduct.title}.</strong> {selectedProduct.desc} Engineered for heavy industrial use cases, offering robust construction and maximum reliability across all structural applications.</p>
+                                <a
+                                    href={`https://wa.me/917891371290?text=${encodeURIComponent(`Hey, I want to know more about ${selectedProduct.title}`)}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="btn-primary"
+                                    style={{ marginTop: '32px', alignSelf: 'flex-start' }}
+                                >
+                                    Know More <ArrowRight size={18} />
+                                </a>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
@@ -419,37 +476,37 @@ function ContactSection() {
                 <div className="contact-layout">
                     {/* Left Info */}
                     <div className="contact-info">
-                        <div className="arch-tag">Get in Touch</div>
-                        <h2 className="heading-lg">Contact Us</h2>
-                        <p className="subtext" style={{ marginTop: '20px', marginBottom: '40px' }}>
+                        <div className="arch-tag" style={{ color: 'rgba(255,255,255,0.6)' }}>Get in Touch</div>
+                        <h2 className="heading-lg" style={{ color: '#FFFFFF' }}>Contact Us</h2>
+                        <p className="subtext" style={{ marginTop: '20px', marginBottom: '40px', color: 'rgba(255,255,255,0.7)' }}>
                             Ready to start your next industrial project? Reach out to us for detailed estimates and technical consultations.
                         </p>
 
                         <div className="info-row">
-                            <MapPin size={24} color="var(--text-primary)" style={{ flexShrink: 0 }} />
+                            <MapPin size={28} color="#FFFFFF" style={{ flexShrink: 0 }} />
                             <div className="info-text">
-                                <h4>Location</h4>
-                                <p>Unit No. TB 331, Capital Highstreet,<br />Phoolbag, RIICO Industrial Area,<br />Bhiwadi, Alwar, Raj. 301019</p>
+                                <h4 style={{ color: '#FFFFFF', fontSize: '15px' }}>Location</h4>
+                                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: '1.6' }}>Unit No. TB 331, Capital Highstreet,<br />Phoolbag, RIICO Industrial Area,<br />Bhiwadi, Alwar, Raj. 301019</p>
                             </div>
                         </div>
 
                         <div className="info-row">
-                            <Building size={24} color="var(--text-primary)" style={{ flexShrink: 0 }} />
+                            <Building size={28} color="#FFFFFF" style={{ flexShrink: 0 }} />
                             <div className="info-text">
-                                <h4>GST Number</h4>
-                                <p style={{ fontWeight: '500', color: '#FFF' }}>08BCZPS3233D1Z8</p>
+                                <h4 style={{ color: '#FFFFFF', fontSize: '15px' }}>GST Number</h4>
+                                <p style={{ fontWeight: '600', color: 'rgba(255,255,255,0.9)' }}>08BCZPS3233D1Z8</p>
                             </div>
                         </div>
 
                         <div className="info-row">
-                            <Phone size={24} color="var(--text-primary)" style={{ flexShrink: 0 }} />
+                            <Phone size={28} color="#FFFFFF" style={{ flexShrink: 0 }} />
                             <div className="info-text">
-                                <h4>Phone Numbers</h4>
-                                <p>
-                                    <a href="tel:8058025335" className="phone-link">8058025335</a><br />
-                                    <a href="tel:7891371290" className="phone-link">7891371290</a><br />
-                                    <a href="tel:7425001700" className="phone-link">7425001700</a>
-                                </p>
+                                <h4 style={{ color: '#FFFFFF', fontSize: '15px', marginBottom: '16px' }}>Phone Numbers</h4>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                                    <a href="tel:8058025335" className="phone-pill">805 802 5335</a>
+                                    <a href="tel:7891371290" className="phone-pill">789 137 1290</a>
+                                    <a href="tel:7425001700" className="phone-pill">742 500 1700</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -481,8 +538,8 @@ function ContactSection() {
                                 <label>Message (Optional)</label>
                                 <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Any specific requirements..." rows="3"></textarea>
                             </div>
-                            <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '12px' }}>
-                                <MessageCircle size={18} /> Submit via WhatsApp
+                            <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '24px', background: '#FFFFFF', color: '#111111', fontSize: '15px', fontWeight: '700' }}>
+                                Continue to WhatsApp <ArrowRight size={18} />
                             </button>
                         </form>
                     </motion.div>
@@ -494,6 +551,20 @@ function ContactSection() {
 
 function App() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const textReveal = {
         hidden: { opacity: 0, y: 30 },
@@ -506,7 +577,7 @@ function App() {
 
     return (
         <>
-            <header className="header">
+            <header className={`header ${isScrolled ? 'solid' : 'transparent'}`}>
                 <div className="logo-box">SS<span>.</span>Engineering</div>
                 <nav className="nav-links">
                     <a href="#about">About</a>
@@ -604,13 +675,44 @@ function App() {
                             </div>
                         </motion.div>
                         <div className="about-text-col">
-                            <ScrollRevealText text="For over 25 years, SS Engineering has proudly provided top-tier industrial solutions. We specialize in precision steel fabrication and structural civil works. Our goal is simple: we build safe, durable structures entirely tailored to your exact requirements." />
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
-                                <a href="https://wa.me/917891371290" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'inline-block', margin: '48px 0 0 0' }}>
+                            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                                <div className="arch-tag">Company Overview</div>
+                                <h2 className="heading-lg" style={{ marginBottom: '24px' }}>Building the future of industry.</h2>
+                                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '26px', fontWeight: '700', marginBottom: '16px', color: 'var(--text-primary)' }}>About SS Engineering</h3>
+                                <p className="subtext" style={{ fontSize: '18px', color: 'var(--text-primary)', marginBottom: '16px', lineHeight: '1.7' }}>
+                                    For over 25 years, SS Engineering has proudly provided top-tier industrial solutions. We specialize in precision steel fabrication, heavy structural layouts, and rigorous civil works designed specifically for industrial-scale applications.
+                                </p>
+                                <p className="subtext" style={{ fontSize: '16px', marginBottom: '40px' }}>
+                                    We don't just supply metal; we deliver the foundational strength your business relies on. From customized warehouse sheds to complex multi-story platforms, our commitment to quality, durability, and on-time execution never wavers.
+                                </p>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+                                <a href="https://wa.me/917891371290" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'inline-block', margin: '20px 0 0 0' }}>
                                     <button className="btn-secondary"><MessageCircle size={18} /> Contact Us</button>
                                 </a>
                             </motion.div>
                         </div>
+                    </div>
+
+                    {/* Mission & Values Section Below */}
+                    {/* Mission & Values Section Below */}
+                    <div className="mission-values-grid">
+                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}>
+                            <div className="mv-icon-wrapper">
+                                <CheckCircle size={28} color="#C89F51" strokeWidth={1.5} />
+                            </div>
+                            <h4 className="mv-title">Our Mission</h4>
+                            <p className="mv-desc">To construct uncompromisingly secure and high-performance structures explicitly tailored to each client's operational demands, backed by precision engineering and robust materials.</p>
+                        </motion.div>
+
+                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}>
+                            <div className="mv-icon-wrapper">
+                                <CheckCircle size={28} color="#C89F51" strokeWidth={1.5} />
+                            </div>
+                            <h4 className="mv-title">Our Values</h4>
+                            <p className="mv-desc">We operate on the absolute core principles of integrity, accuracy, and unwavering reliability in every single blueprint and build, ensuring maximum safety standard adherence.</p>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -646,6 +748,23 @@ function App() {
 
             {/* FAQ */}
             <FAQSection />
+
+            {/* CTA SECTION */}
+            <section style={{ background: '#F8F9FA', padding: '100px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
+                    <div style={{ maxWidth: '700px' }}>
+                        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(32px, 4vw, 42px)', color: '#111111', marginBottom: '20px', lineHeight: '1.2' }}>
+                            Ready to Build Your Project with Quality Steel Structures?
+                        </h2>
+                        <p style={{ fontSize: '18px', color: '#555555', lineHeight: '1.6' }}>
+                            Our expert team is ready to assist you from precise planning to rigorous on-site installation. Free consultation, no commitment!
+                        </p>
+                    </div>
+                    <a href="#contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: '#111111', color: '#FFFFFF', padding: '20px 40px', borderRadius: '99px', fontSize: '14px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                        Get a Free Quote <ArrowRight size={18} />
+                    </a>
+                </div>
+            </section>
 
             {/* CONTACT */}
             <ContactSection />
