@@ -316,12 +316,13 @@ a {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  /* Fix overlap by pushing layout structurally upward */
   background: var(--bg-primary);
   overflow: hidden;
-  padding-top: 80px;
-  padding-bottom: 160px;
-  /* Safe zone for stats overlap */
+  padding-top: 25vh;
+  /* Standardized offset perfectly balancing Navbar instead of relying on center */
+  padding-bottom: 0;
 }
 
 .video-wrap {
@@ -381,7 +382,7 @@ a {
 .hero-floating-card {
   position: absolute;
   right: 5vw;
-  bottom: 80px;
+  bottom: 140px;
   background: rgba(255, 255, 255, 0.85);
   /* BRIGHTENED */
   ;
