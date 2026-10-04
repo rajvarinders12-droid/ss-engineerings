@@ -616,7 +616,7 @@ function App() {
             {/* HERO */}
             <section className="hero">
                 <div className="video-wrap">
-                    <img src="/bg image1.png" alt="Background" />
+                    <img src="/bg_image1.png" alt="Background" />
                     <div className="video-overlay"></div>
                 </div>
                 <div className="container hero-ui">
