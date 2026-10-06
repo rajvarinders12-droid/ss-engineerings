@@ -702,7 +702,7 @@ function App() {
                             viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}
                         >
                             <div className="about-img-wrap">
-                                <img src={aboutImg} alt="SS Engineering Production" />
+                                <img src="/ms heavy duty platforms potrait.png" alt="SS Engineering Production" />
                             </div>
                         </motion.div>
                         <div className="about-text-col">
