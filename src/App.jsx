@@ -507,9 +507,9 @@ function ContactSection() {
                             <div className="info-text">
                                 <h4 style={{ color: '#FFFFFF', fontSize: '15px', marginBottom: '16px' }}>Phone Numbers</h4>
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-                                    <a href="tel:8058025335" className="phone-pill">805 802 5335</a>
-                                    <a href="tel:7891371290" className="phone-pill">789 137 1290</a>
-                                    <a href="tel:7425001700" className="phone-pill">742 500 1700</a>
+                                    <a href="tel:+918058025335" className="phone-pill">+91 805 802 5335</a>
+                                    <a href="tel:+917891371290" className="phone-pill">+91 789 137 1290</a>
+                                    <a href="tel:+917425001700" className="phone-pill">+91 742 500 1700</a>
                                 </div>
                             </div>
                         </div>
@@ -528,7 +528,7 @@ function ContactSection() {
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="+91 Number" />
+                                <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} />
                             </div>
                             <div className="form-group">
                                 <label>Interested Service</label>
@@ -634,20 +634,21 @@ function App() {
                             style={{
                                 opacity: currentHeroIndex === i ? 1 : 0,
                                 transition: 'opacity 1s ease-in-out',
-                                position: i === 0 ? 'relative' : 'absolute',
+                                position: 'absolute',
                                 top: 0,
                                 left: 0,
                                 width: '100%',
                                 height: '100%',
-                                objectFit: 'cover'
+                                objectFit: 'cover',
+                                zIndex: 0
                             }}
                         />
                     ))}
-                    <div className="video-overlay"></div>
+                    <div className="video-overlay" style={{ zIndex: 1 }}></div>
                 </div>
                 <div className="container hero-ui">
-                    <motion.div className="hero-text-side" variants={stagger} initial="hidden" animate="visible">
-                        <motion.div variants={textReveal} className="arch-tag" style={{ color: 'var(--text-secondary)' }}>BUILDING BETTER TOMORROW</motion.div>
+                    <motion.div className="hero-text-side" variants={stagger} initial="hidden" animate="visible" style={{ position: 'relative', zIndex: 2 }}>
+                        <motion.div variants={textReveal} className="arch-tag" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>BUILDING BETTER TOMORROW</motion.div>
                         <motion.h1 variants={textReveal} className="heading-xl">Quality Construction<br />for a Stronger<br /><span style={{ color: '#C89F51' }}>Future</span></motion.h1>
                         <motion.p variants={textReveal} className="subtext hero-subtext">
                             From residential to commercial projects, we deliver reliable, innovative and cost-effective construction solutions tailored to your needs.
