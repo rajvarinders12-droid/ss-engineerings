@@ -524,11 +524,11 @@ function ContactSection() {
                             <h3 className="form-title">Send an Inquiry</h3>
                             <div className="form-group">
                                 <label>Full Name</label>
-                                <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="John Doe" />
+                                <input type="text" name="name" required value={formData.name} onChange={handleChange} />
                             </div>
                             <div className="form-group">
                                 <label>Phone Number</label>
-                                <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="+91 00000 00000" />
+                                <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="+91 Number" />
                             </div>
                             <div className="form-group">
                                 <label>Interested Service</label>
