@@ -53,9 +53,9 @@ const ScrollRevealText = ({ text }) => {
 
 // Products Data
 const productsData = [
-    { img: "/MS industrial heavy fabrication potrait.png", title: "MS Industrial Heavy Fabrication", desc: "Large-scale mild steel structures custom-built for high-strength industrial use." },
     { img: "/Industrial MS Structural Construction potrait.png", title: "Industrial MS Structural Construction", desc: "Reliable steel frameworks built from the ground up for industrial buildings and factories." },
     { img: "/ind. shead and wharehouse potrait.png", title: "Industrial Shed & Warehouse", desc: "Strong, weather-proof steel buildings designed for storage and large-scale manufacturing." },
+    { img: "/MS industrial heavy fabrication potrait.png", title: "MS Industrial Heavy Fabrication", desc: "Large-scale mild steel structures custom-built for high-strength industrial use." },
     { img: "/Railings, Gates & Staircases potrait.png", title: "Railings, Gates & Staircases", desc: "Durable and safe steel access structures built for heavy daily industrial traffic." },
     { img: "/roofing and cladding potrait.png", title: "Roofing & Cladding", desc: "High-quality industrial roofing to protect your facilities from harsh weather." },
     { img: "/ms tanks potrait.png", title: "MS Industrial Tank", desc: "Heavy-duty steel tanks engineered to store high volumes of industrial liquids." },
@@ -556,6 +556,16 @@ function ContactSection() {
 function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+    const heroImages = ["/bg_image1.png", "/big image 2.png"];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentHeroIndex(prev => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -616,7 +626,23 @@ function App() {
             {/* HERO */}
             <section className="hero">
                 <div className="video-wrap">
-                    <img src="/bg_image1.png" alt="Background" />
+                    {heroImages.map((img, i) => (
+                        <img
+                            key={img}
+                            src={img}
+                            alt={`Background ${i + 1}`}
+                            style={{
+                                opacity: currentHeroIndex === i ? 1 : 0,
+                                transition: 'opacity 1s ease-in-out',
+                                position: i === 0 ? 'relative' : 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover'
+                            }}
+                        />
+                    ))}
                     <div className="video-overlay"></div>
                 </div>
                 <div className="container hero-ui">
