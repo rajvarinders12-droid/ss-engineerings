@@ -68,7 +68,7 @@ const productsData = [
 // How We Work Steps Data
 const stepsData = [
     { num: "01", img: "/step1.webp", title: "Initial Consultation", desc: "We sit down with you, understand your exact requirements, and provide honest professional recommendations." },
-    { num: "02", img: "/step2.webp", title: "Proposal & Budgeting", desc: "We create a clear, detailed proposal covering materials, timelines, and a transparent cost breakdown." },
+    { num: "02", img: "/step2.png", title: "Proposal & Budgeting", desc: "We create a clear, detailed proposal covering materials, timelines, and a transparent cost breakdown." },
     { num: "03", img: "/step3.webp", title: "Engineering & Design", desc: "Our engineers draft precision blueprints and structural designs tailored specifically to your project." },
     { num: "04", img: "/step4.webp", title: "Fabrication & Delivery", desc: "We fabricate every component to exact spec in our factory and deliver it safely to your site on time." }
 ];
@@ -257,8 +257,8 @@ function BentoSection() {
                     <h2 className="heading-lg">Built on Integrity.<br />Engineered for<br />Durability.</h2>
                     <div className="bento-img-wrap img-bottom left-img">
                         <picture>
-                            <source media="(max-width: 768px)" srcSet="/potrait.jpg" />
-                            <img src="/const 1.jpg" alt="Construction Phase 1" />
+                            <source media="(max-width: 768px)" srcSet="/2.png" />
+                            <img src="/1.png" alt="Construction Phase 1" />
                         </picture>
                     </div>
                 </motion.div>
@@ -272,7 +272,7 @@ function BentoSection() {
                     transition={{ duration: 0.6, delay: 0.15 }}
                 >
                     <div className="bento-img-wrap img-tall center-img">
-                        <img src="/const 2.jpg" alt="Construction Phase 2" />
+                        <img src="/2.png" alt="Construction Phase 2" />
                     </div>
                 </motion.div>
 
@@ -291,7 +291,7 @@ function BentoSection() {
                         </a>
                     </div>
                     <div className="bento-img-wrap img-bottom right-img">
-                        <img src="/const 3.jpg" alt="Construction Phase 3" />
+                        <img src="/3.png" alt="Construction Phase 3" />
                     </div>
                 </motion.div>
 
@@ -558,7 +558,7 @@ function App() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
-    const heroImages = ["/bg_image1.png", "/big image 2.png"];
+    const heroImages = ["/bg_image1.png", "/big image 2.png", "/big image 3.png"];
 
     useEffect(() => {
         const interval = setInterval(() => {
