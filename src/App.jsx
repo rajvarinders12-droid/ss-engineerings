@@ -9,7 +9,7 @@ import aboutImg from './assets/about.jpg';
 function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
     const [count, setCount] = useState(0);
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const isInView = useInView(ref, { once: false, margin: "-50px" });
 
     useEffect(() => {
         if (isInView) {
@@ -251,7 +251,7 @@ function BentoSection() {
                     className="bento-col bento-left"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="heading-lg">Built on Integrity.<br />Engineered for<br />Durability.</h2>
@@ -268,7 +268,7 @@ function BentoSection() {
                     className="bento-col bento-center"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     transition={{ duration: 0.6, delay: 0.15 }}
                 >
                     <div className="bento-img-wrap img-tall center-img">
@@ -281,7 +281,7 @@ function BentoSection() {
                     className="bento-col bento-right"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                 >
                     <div className="bento-text-box">
@@ -406,7 +406,7 @@ function FAQSection() {
                     {/* Left Column */}
                     <motion.div className="faq-left"
                         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }}
+                        viewport={{ once: false, margin: "-50px" }} transition={{ duration: 0.6 }}
                     >
                         <h2 className="heading-lg" style={{ marginBottom: '40px' }}>Frequently Asked<br />Questions</h2>
 
@@ -429,7 +429,7 @@ function FAQSection() {
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-20px" }} transition={{ delay: index * 0.1, duration: 0.5 }}
+                                    viewport={{ once: false, margin: "-20px" }} transition={{ delay: index * 0.1, duration: 0.5 }}
                                     className={`faq-item ${isOpen ? 'faq-item--open' : ''}`}
                                     onClick={() => setOpenIndex(isOpen ? null : index)}
                                 >
@@ -518,7 +518,7 @@ function ContactSection() {
                     {/* Right Form */}
                     <motion.div className="contact-form-wrap"
                         initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6 }}
+                        viewport={{ once: false, margin: "-50px" }} transition={{ duration: 0.6 }}
                     >
                         <form className="contact-form" onSubmit={handleSubmit}>
                             <h3 className="form-title">Send an Inquiry</h3>
@@ -680,7 +680,7 @@ function App() {
             <div className="stats-bar-wrapper">
                 <motion.div className="stats-floating-card"
                     initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }}
+                    viewport={{ once: false, margin: "-50px" }} transition={{ duration: 0.8 }}
                 >
                     <div className="stats-inner-grid">
                         {[{ end: 25, s: '+', label: 'Years of Experience' }, { end: 250, s: '+', label: 'Completed Projects' }, { end: 40, s: '+', label: 'Team Members' }, { end: 98, s: '%', label: 'Satisfaction Rate' }].map(({ end, s, label }, i) => (
@@ -699,14 +699,14 @@ function App() {
                     <div className="about-grid">
                         <motion.div className="about-img-col"
                             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}
+                            viewport={{ once: false, margin: "-100px" }} transition={{ duration: 0.8 }}
                         >
                             <div className="about-img-wrap">
                                 <img src="/ms heavy duty platforms potrait.png" alt="SS Engineering Production" />
                             </div>
                         </motion.div>
                         <div className="about-text-col">
-                            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.6 }}>
                                 <div className="arch-tag">Company Overview</div>
                                 <h2 className="heading-lg" style={{ marginBottom: '24px' }}>Building the future of industry.</h2>
                                 <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '26px', fontWeight: '700', marginBottom: '16px', color: 'var(--text-primary)' }}>About SS Engineering</h3>
@@ -718,7 +718,7 @@ function App() {
                                 </p>
                             </motion.div>
 
-                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+                            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false }} transition={{ delay: 0.3 }}>
                                 <a href="https://wa.me/917891371290" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'inline-block', margin: '20px 0 0 0' }}>
                                     <button className="btn-secondary"><MessageCircle size={18} /> Contact Us</button>
                                 </a>
@@ -729,7 +729,7 @@ function App() {
                     {/* Mission & Values Section Below */}
                     {/* Mission & Values Section Below */}
                     <div className="mission-values-grid">
-                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}>
+                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ delay: 0.2, duration: 0.5 }}>
                             <div className="mv-icon-wrapper">
                                 <CheckCircle size={28} color="#C89F51" strokeWidth={1.5} />
                             </div>
@@ -737,7 +737,7 @@ function App() {
                             <p className="mv-desc">To construct uncompromisingly secure and high-performance structures explicitly tailored to each client's operational demands, backed by precision engineering and robust materials.</p>
                         </motion.div>
 
-                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.5 }}>
+                        <motion.div className="mv-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ delay: 0.4, duration: 0.5 }}>
                             <div className="mv-icon-wrapper">
                                 <CheckCircle size={28} color="#C89F51" strokeWidth={1.5} />
                             </div>
@@ -752,7 +752,7 @@ function App() {
             <section className="products-section" id="products">
                 <div className="container">
                     <motion.div className="section-header" initial="hidden" whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }} variants={stagger}
+                        viewport={{ once: false, margin: "-100px" }} variants={stagger}
                     >
                         <div className="section-header-left">
                             <motion.div variants={textReveal} className="arch-tag">Product Catalog</motion.div>
@@ -765,7 +765,7 @@ function App() {
                         </motion.div>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.8 }}>
+                        viewport={{ once: false, margin: "-50px" }} transition={{ duration: 0.8 }}>
                         <ProductCarousel />
                     </motion.div>
                 </div>
@@ -781,7 +781,7 @@ function App() {
             <FAQSection />
 
             {/* CTA SECTION */}
-            <section style={{ background: '#F8F9FA', padding: '100px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+            <section style={{ background: '#F8F9FA', padding: '60px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
                     <div style={{ maxWidth: '700px' }}>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(32px, 4vw, 42px)', color: '#111111', marginBottom: '20px', lineHeight: '1.2' }}>
