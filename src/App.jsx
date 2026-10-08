@@ -558,7 +558,7 @@ function App() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
-    const heroImages = ["/bg_image1.png", "/big image 2.png", "/big image 3.png"];
+    const heroImages = ["/bg_image1.png", "/bg image 2.png", "/big image 3.png"];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -781,7 +781,7 @@ function App() {
             <FAQSection />
 
             {/* CTA SECTION */}
-            <section style={{ background: '#F8F9FA', padding: '60px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+            <section style={{ background: '#F8F9FA', padding: '40px 0', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
                     <div style={{ maxWidth: '700px' }}>
                         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(32px, 4vw, 42px)', color: '#111111', marginBottom: '20px', lineHeight: '1.2' }}>
