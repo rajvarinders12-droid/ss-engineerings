@@ -314,13 +314,14 @@ a {
 /* Hero */
 .hero {
   position: relative;
-  min-height: 60vh;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
   background: var(--bg-primary);
-  overflow: visible;
-  padding-top: 80px;
-  padding-bottom: 60px;
+  overflow: hidden;
+  padding-top: 60px;
+  padding-bottom: 0;
 }
 
 .video-wrap {
@@ -352,7 +353,7 @@ a {
   position: relative;
   z-index: 10;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 0;
 }
 
 .hero-text-side {
@@ -379,7 +380,7 @@ a {
 .hero-floating-card {
   position: absolute;
   right: 5vw;
-  bottom: 140px;
+  bottom: 80px;
   background: rgba(255, 255, 255, 0.85);
   /* BRIGHTENED */
   ;
